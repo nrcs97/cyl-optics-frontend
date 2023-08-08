@@ -55,7 +55,7 @@ export default function Header(){
             restDelta: 0.0001
         })
 
-    return <header className="flex flex-col w-[100%] bg-gray-50 pt-[0.5rem]">
+    return <header className="flex flex-col self-center w-[1000px] bg-gray-50 pt-[0.5rem]">
         <div className="flex self-left justify-center w-[100%]">
             <div className="flex w-[40%] text-[0.8rem] p-[2rem] text-gray-500 font-semibold font-creatoRegular leading-tight gap-x-[2rem]">
                 { tabs.map(tab => <div className="flex flex-col" key={tab}>
