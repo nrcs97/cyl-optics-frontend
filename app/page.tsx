@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 export default function Home(){
   const router = useRouter()
 
-  return <main className="flex flex-col gap-y-[2rem] pb-[2.5rem] min-h-[100vh] bg-gray-50">
+  return <main className="flex flex-col self-center gap-y-[2rem] pb-[2.5rem] w-[1000px] min-h-[100vh] bg-gray-50">
     <Carousel/>
     <section>
       <div className='flex flex-col items-center gap-y-[1.5rem] w-[100%]'>
