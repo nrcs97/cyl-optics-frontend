@@ -17,12 +17,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }){
-  const path = usePathname().slice(1)
+  const path = usePathname().split('/')
   return (
     <html lang="en">
       <body className={inter.className}>
         <div className='flex flex-col gap-y-[1rem] w-[100vw] h-[100vh]'>
-          { path !== 'admin' && path !== 'clients' ?
+          { !path.includes('admin') ?
           <Header/> : null}
           {children}
         </div>
