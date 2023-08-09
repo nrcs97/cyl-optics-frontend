@@ -1,12 +1,9 @@
 'use client'
-import NavBar from '@/components/NavBar/NavBar'
+import Dashboard from '@/components/Dashboard/Dashboard'
 
 export default function Admin(){
 
-    return <main className="flex flex-col gap-y-[2rem] max-h-[100vh]">
-        <section className="flex h-[100vh]">
-            <NavBar/>
-            <div className="w-full h-full"></div>
-        </section>
-</main>
+    return <Dashboard title='Admin dashboard' currentTab=''>
+        <h1 className='text-black'>ADMIN</h1>
+    </Dashboard>
 }

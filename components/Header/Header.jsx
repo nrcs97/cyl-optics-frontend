@@ -75,12 +75,12 @@ export default function Header(){
                 }
             </div>
             <div className="flex justify-center self-center w-[20%] h-fit">
-                <Image className="object-cover self-end w-auto h-[60px]" alt={'logo_cyl'}
+                <Image className="object-cover self-end w-auto h-[60px]" alt='logo_cyl'
                 src={logo} width={1200} height={1000} />
             </div>
             <div className="flex justify-end gap-x-[0.3rem] w-[40%]">
                 <div className="relative top-[0.075rem] flex items-center grayscale">
-                    <Image className="w-[10px] h-[10px]"
+                    <Image className="w-[10px] h-[10px]" alt='login_img'
                         src={login_logo} width={300} height={300}/>
                 </div>
                 <div className="p-[2rem] pl-[0]">
