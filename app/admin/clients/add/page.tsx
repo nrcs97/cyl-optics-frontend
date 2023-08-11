@@ -4,12 +4,10 @@ import ClientForm from "@/components/ClientForm/ClientForm"
 
 export default function AddClient(){
     return <Dashboard>
-        <div className="flex flex-col gap-y-[0.6rem] w-[38%] h-[100%] border p-[1.2rem] shadow rounded-xl">
+        <div className="flex flex-col gap-y-[0.6rem] w-[385px] h-[480px] border p-[1.2rem] shadow rounded-xl">
             <h1 className="text-[#2756A8] font-black text-[0.9rem]">Nuevo cliente</h1>
             <p className="text-black text-[0.9rem]">Completá el formulario para registrar un nuevo cliente</p>
-            <div className="flex self-center pt-[1.2rem]">
-                <ClientForm fontWidth="light" fontColor="black" textColor="black"/>
-            </div>
+            <ClientForm fontWidth="light" fontColor="black" textColor="black"/>
         </div>
     </Dashboard>
     
