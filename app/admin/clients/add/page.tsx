@@ -7,7 +7,7 @@ export default function AddClient(){
     const router = useRouter()
     
     return <Dashboard>
-        <label className="text-black font-light underline cursor-pointer" onClick={()=> router.back()}>Atras</label>
+        <label className="text-black font-light underline cursor-pointer" onClick={()=> router.push('/admin/clients')}>Atras</label>
         <div className="flex">
             <div className="flex flex-col gap-y-[0.6rem] w-[385px] h-[480px] border p-[1.2rem] shadow rounded-xl">
                 <h1 className="text-[#2756A8] font-black text-[0.9rem]">Nuevo cliente</h1>

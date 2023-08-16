@@ -5,14 +5,14 @@ import * as Yup from 'yup'
 // })
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().min(3, 'Al menos 2 caracteres'),
-    // surname: Yup,
+    name: Yup.string().min(3, 'Al menos 2 caracteres').required('Campo obligatorio'),
+    surname: Yup.string().min(3, 'Al menos 2 caracteres').required('Campo obligatorio'),
     // location: Yup,
     // zipCode: Yup,
-    // birthDate: Yup,
-    // phoneNumber: Yup,
+    birthDate: Yup.string().required('Campo obligatorio'),
+    phoneNumber: Yup.string().required('Campo obligatorio'),
     // email: Yup,
-    // idNumber: Yup,
+    idNumber: Yup.string().required('Campo obligatorio'),
     // occupation: Yup,
     // neighborhood: Yup,
     // healthInsurance: Yup,
