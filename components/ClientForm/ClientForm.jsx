@@ -57,7 +57,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
     function handleInputChange(e, setFieldValue, setFieldError){ // handler that controls specific value inputs
     const { name, value } = e.target
         if (name === 'name' || name === 'surname'){
-            if (/^[a-zA-ZÀ-ÖØ-öø-ÿ]*$/.test(value)) // only uppercase, lowercase or empty string regex
+            if (/^[A-Za-z\s]*$/.test(value)) // only uppercase, lowercase or empty string regex
                 setFieldValue([name], value)
             else setFieldError([name], 'Solo letras')
         }
@@ -262,7 +262,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                                         name="occupation"
                                         type="text"
                                         maxLength={60}
-                                        tabIndex="9"/>
+                                        tabIndex="-1"/>
                                     {errors.occupation && touched.occupation ?
                                         <h1 className='absolute top-[5.6rem] text-[0.8rem] text-red-500'>{errors.occupation}</h1> 
                                         : null}  
@@ -274,7 +274,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                                         id="healthInsurance"
                                         name="healthInsurance"
                                         type="text"
-                                        tabIndex="11"/>
+                                        tabIndex="-1"/>
                                     {errors.healthInsurance && touched.healthInsurance ?
                                         <h1 className='absolute top-[10.8rem] text-[0.8rem] text-red-500'>{errors.healthInsurance}</h1>   
                                         : null}
@@ -287,7 +287,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                                         name="address"
                                         type="text"
                                         maxLength={40}
-                                        tabIndex="13"/>
+                                        tabIndex="-1"/>
                                     {errors.address && touched.address ?
                                         <h1 className='absolute top-[15.9rem] text-[0.8rem] text-red-500'>{errors.address}</h1>
                                         : null}
@@ -302,7 +302,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                                         name="neighborhood"
                                         type="text"
                                         maxLength={40}
-                                        tabIndex="10"/>
+                                        tabIndex="-1"/>
                                     <h1 className='absolute top-[5.6rem] text-[0.8rem] text-red-500'>{errors.neighborhood}</h1>
                                 </div>
                                 <div className='flex flex-col gap-y-[0.2rem] items-baseline'>
@@ -315,7 +315,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                                         type="text"
                                         onChange={(e)=>handleInputChange(e, setFieldValue, setFieldError)}
                                         maxLength={16}
-                                        tabIndex="12"/>
+                                        tabIndex="-1"/>
                                     {errors.cuit && (touched.cuit || errors.cuit === 'Solo números')}
                                     <h1 className='absolute w-[160px] top-[10.8rem] text-[0.8rem] text-red-500'>{errors.cuit}</h1> 
                                 </div>
@@ -327,7 +327,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                                         name="iva"
                                         type="text"
                                         maxLength={50}
-                                        tabIndex="14"/>
+                                        tabIndex="-1"/>
                                     <h1 className='absolute top-[15.9rem] text-[0.8rem] text-red-500'>{errors.iva}</h1> 
                                 </div>
                             </div>  

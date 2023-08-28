@@ -4,7 +4,7 @@ import ClientForm from "@/components/ClientForm/ClientForm"
 
 export default function AddClient(){
     
-    return <Dashboard title={'Clientes'} returnPath={'/admin/clients'}>
+    return <Dashboard title={'Agregar cliente'} returnPath={'/admin/clients'}>
         <div className="flex">
             <ClientForm fontWidth="light" fontColor="black" textColor="black"/>
             <div className="w-full h-full p-[1rem]"></div>
