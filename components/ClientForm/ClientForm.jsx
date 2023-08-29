@@ -116,6 +116,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
             }}
             validationSchema={validationSchema}
             onSubmit={(values, {resetForm})=> {
+                setPage('first')
                 setFormAnimation('submitting')
                 axios.post('http://localhost:3001/clients', values)
                 .then(response => {
@@ -123,7 +124,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                     setTimeout(()=>{
                         setFormAnimation('submitted')
                         resetForm()
-                    }, 1500)
+                    }, 1700)
                 })
             }}> 
                 {({errors, touched, values, setFieldValue, setFieldError})=>(

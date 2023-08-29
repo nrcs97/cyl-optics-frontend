@@ -9,7 +9,4 @@ export default function SearchClient(){
             <SearchContainer/>
         </div>
     </Dashboard>
-    
-    {/* <div className="w-fit h-fit bg-gray-400 rounded-3xl" style={{background: 'linear-gradient(55deg, #e21744, #e3cc1c)'}}>
-    </div> */}
 }
