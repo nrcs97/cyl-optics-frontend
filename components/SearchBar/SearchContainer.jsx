@@ -26,25 +26,33 @@ export default function SearchContainer(){
         setSearch(result)
     }
 
-    return <div className='flex flex-col gap-y-[4rem]'>
-        <div className='flex w-[330px] h-[35px] border rounded-md p-[0.3rem] pl-[0.5rem] pr-[0.5rem] shadow-md'>
+    return <div className='flex flex-col gap-y-[0.8rem]'>
+        <div className='flex w-[330px] h-[35px] border rounded-md mb-[2rem] p-[0.3rem] pl-[0.5rem] pr-[0.5rem] shadow-md'>
             <FaSearch className='self-center' size={20} color='black'/>
             <input className='ml-[0.7rem] bg-transparent text-[16px] text-black focus:outline-none'
                 value={input} onChange={(e)=> handleChange(e.target.value)} placeholder='Escribe aquí'/>
         </div>
-        <div className='flex flex-col'>
-        {search.length ?
-            <div className='flex flex-col w-[700px] gap-y-[0.5rem]'>
-                {search.map((client, index) => <div key={index} className='flex flex-col p-[1rem] border rounded-xl'>
-                    <h1 className='text-black'>{client.surname}</h1>
-                    <h1 className='text-black'>{client.name}</h1>
-                </div>)}
+        <div className='flex flex-col gap-y-[1rem] w-[500px] h-[400px]'>
+            <div className='flex justify-between'>
+                <h1 className='text-black'>Nombre y apellido</h1>
+                <h1 className='text-black'>Última historia</h1>
+                <h1 className='text-black'>Número de teléfono</h1>
             </div>
-            : <div className='flex flex-col self-center items-center'>
-                <FaFolderOpen size={200} color="black" style={{opacity: 0.1}}/>
-                <h1 className="text-black text-[20px]" style={{opacity: 0.4}}>Ningún resultado aún.</h1>
+            <div className={`flex flex-col h-full ${search.length ? 'overflow-scroll' : ''}`}>
+            {search.length ?
+                <div className='flex flex-col gap-y-[0.5rem]'>
+                    {search.map((client, index) => <div key={index} className='flex justify-between p-[1rem] border rounded-xl'>
+                        <h1 className='w-[8rem] overflow-hidden text-black'>{client.surname + ', ' + client.name}</h1>
+                        <h1 className='w-[8rem] overflow-hidden text-black'>{'Retiro 2 anteojos locos'}</h1>
+                        <h1 className='w-[8rem] overflow-hidden text-black'>{client.phoneNumber}</h1>
+                    </div>)}
+                </div>
+                : <div className='flex flex-col mt-[2rem] self-center items-center w-fit'>
+                    <FaFolderOpen size={200} color="black" style={{opacity: 0.1}}/>
+                    <h1 className="text-black text-[20px]" style={{opacity: 0.4}}>Ningún resultado aún.</h1>
+                </div>
+            }
             </div>
-        }
         </div>
     </div>
 }
