@@ -2,11 +2,14 @@ import { FaSearch } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import { FaFolderOpen } from 'react-icons/fa'
 import axios from 'axios'
+import { motion } from 'framer-motion'
+import DataSheet from '@/components/DataSheet/DataSheet'
 
 export default function SearchContainer(){
     const [ input, setInput ] = useState('')
     const [ search, setSearch ] = useState([])
     const [ clients, setClients ] = useState([])
+    const [ selectedClient, setSelectedClient ] = useState(null)
 
     useEffect(()=>{
         axios.get('http://localhost:3001/clients')
@@ -26,36 +29,37 @@ export default function SearchContainer(){
         setSearch(result)
     }
 
-    return <div className='flex flex-col gap-y-[0.8rem]'>
-        <div className='flex w-[330px] h-[35px] border rounded-md mb-[2rem] p-[0.3rem] pl-[0.5rem] pr-[0.5rem] shadow-md'>
-            <FaSearch className='self-center' size={20} color='black'/>
-            <input className='ml-[0.7rem] bg-transparent text-[16px] text-black focus:outline-none'
-                value={input} onChange={(e)=> handleChange(e.target.value)} placeholder='Escribe aquí'/>
-        </div>
-        <div className='flex flex-col gap-y-[1rem] w-[500px] h-[400px]'>
-            <div className='flex justify-between'>
-                <h1 className='text-black'>Nombre y apellido</h1>
-                <h1 className='text-black'>Última historia</h1>
-                <h1 className='text-black'>Número de teléfono</h1>
+    return <div className='flex h-[100%] gap-x-[2rem]'>
+        <div className='flex flex-col w-[450px] gap-y-[0rem]'>
+            <div className='flex w-[400px] h-[35px] border rounded-md mb-[2rem] p-[0.3rem] pl-[0.5rem] pr-[0.5rem] shadow-md'>
+                <FaSearch className='self-center' size={20} color='black'/>
+                <input className='ml-[0.7rem] bg-transparent text-[16px] text-black focus:outline-none'
+                    value={input} onChange={(e)=> handleChange(e.target.value)} placeholder='Escribe aquí'/>
             </div>
-            <div className={`flex flex-col h-full ${search.length ? 'overflow-scroll' : ''}`}>
             {search.length ?
-                <div className='flex flex-col gap-y-[0.5rem]'>
-                    {search.map((client, index) => <div key={index} className='flex justify-between p-[1rem] border rounded-xl'>
-                        <h1 className='w-[8rem] overflow-hidden text-black'>{client.surname + ', ' + client.name}</h1>
-                        <h1 className='w-[8rem] overflow-hidden text-black'>{'Retiro 2 anteojos locos'}</h1>
-                        <h1 className='w-[8rem] overflow-hidden text-black'>{client.phoneNumber}</h1>
-                    </div>)}
+                <div className='flex flex-col border w-[400px] rounded-md shadow-md'>
+                    {search.map((client, index) => <motion.div key={index} className='flex gap-x-[3rem]
+                    justify-between p-[1rem] border-gray cursor-pointer bg-transparent
+                    select-none rounded-[inherit]'
+                    initial={{backgroundColor: 'rgba(0, 0, 0, 0)'}}
+                    whileHover={{backgroundColor: '#E4E4E4'}}
+                    whileTap={{scale: 0.98, transition: { duration: 0.1, type: 'easeIn'}}}
+                    onClick={()=> setSelectedClient(client)}>
+                        <h1 className='text-[15px] text-black'>{client.surname + ', ' + client.name}</h1>
+                        <h1 className='text-[15px] text-black'>{client.idNumber}</h1>
+                    </motion.div>)}
                 </div>
-                : <div className='flex flex-col mt-[2rem] self-center items-center w-fit'>
-                    <FaFolderOpen size={200} color="black" style={{opacity: 0.1}}/>
-                    <h1 className="text-black text-[20px]" style={{opacity: 0.4}}>Ningún resultado aún.</h1>
+                : <div className='flex flex-col mt-[4rem] self-center items-center w-fit'>
+                    <FaFolderOpen size={100} color="black" style={{opacity: 0.1}}/>
+                    <h1 className="text-black text-[18px]" style={{opacity: 0.4}}>Ningún resultado aún.</h1>
                 </div>
             }
-            </div>
         </div>
+
+        { selectedClient ? 
+        <div className='flex justify-center items-center w-[450px]'>
+            <DataSheet client={selectedClient}/>
+        </div>
+        : null }
     </div>
 }
-
-{/* <div className="w-[100px] h-[100px] bg-gray-400 rounded-xl" style={{background: 'linear-gradient(55deg, #e21744, #e3cc1c)'}}>
-</div> */}
