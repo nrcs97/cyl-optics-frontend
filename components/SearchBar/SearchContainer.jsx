@@ -25,11 +25,13 @@ export default function SearchContainer(){
                 return name.toLowerCase() === value.toLowerCase() || 
                     surname.toLowerCase() === value.toLowerCase()
             })
-            : clients
+            : []
         setSearch(result)
     }
 
-    return <div className='flex h-[100%] gap-x-[2rem]'>
+    return <motion.div className='flex h-[100%] gap-x-[2rem]'
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}>
         <div className='flex flex-col w-[450px] gap-y-[0rem]'>
             <div className='flex w-[400px] h-[35px] border rounded-md mb-[2rem] p-[0.3rem] pl-[0.5rem] pr-[0.5rem] shadow-md'>
                 <FaSearch className='self-center' size={20} color='black'/>
@@ -57,9 +59,9 @@ export default function SearchContainer(){
         </div>
 
         { selectedClient ? 
-        <div className='flex justify-center items-center w-[450px]'>
-            <DataSheet client={selectedClient}/>
+        <div className='flex justify-center items-start w-[450px]'>
+            <DataSheet client={selectedClient} setSelectedClient={setSelectedClient}/>
         </div>
         : null }
-    </div>
+    </motion.div>
 }
