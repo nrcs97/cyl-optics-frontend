@@ -25,19 +25,20 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
 
     const form = {
         reset: {
-            opacity: 0,
-            scale: 1,
-            transition: {duration: 0}
+            opacity: [ 0, 1],
+            scale: [ 1, 1],
+            transition: {times: [0, 1], type: ['instant', 'easeIn']}
         },
         blank: {
             opacity: 1,
-            transition: {duration: 0.6, delay: 0.3}
+            transition: {duration: 0.6}
         },
         submitting: {
             opacity: 0.5,
             transition: {duration: 0.6}
         },
         submitted: {
+            opacity: 0,
             scale: 0,
             transition: {duration: 0.6}
         }
@@ -57,7 +58,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
     function handleInputChange(e, setFieldValue, setFieldError){ // handler that controls specific value inputs
     const { name, value } = e.target
         if (name === 'name' || name === 'surname'){
-            if (/^[A-Za-z\s]*$/.test(value)) // only uppercase, lowercase or empty string regex
+            if (/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]*$/.test(value)) // only uppercase, lowercase or empty string regex (and 'ñ' letter)
                 setFieldValue([name], value)
             else setFieldError([name], 'Solo letras')
         }
@@ -84,7 +85,6 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                     transition={{duration: 1.5, delay: 1.3}}
                     onClick={()=> {
                         setFormAnimation('reset')
-                        setFormAnimation('blank')
                         }}>
                     Crear uno nuevo
                 </motion.button>
@@ -334,7 +334,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                             </div>  
                         </div>
                     </motion.div>
-                    {formAnimation === 'blank' ?
+                    {formAnimation === 'blank' || formAnimation === 'reset' ?
                         <div className='flex h-[100%] justify-between'>
                             {(Object.keys(errors)) &&
                                 (values.name !== '' && values.surname !== '' && values.idNumber !== ''

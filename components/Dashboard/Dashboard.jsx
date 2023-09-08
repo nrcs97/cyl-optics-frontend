@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 function Dashboard({children, title, returnPath=''}){
     const router = useRouter()
 
-    return <main className="flex flex-col gap-y-[2rem] max-h-[100vh]">
+    return <main className="flex flex-col gap-y-[2rem] max-h-[100vh] overflow-hidden">
         <section className="flex h-[100vh]">
             <NavBar/>
             <div className="flex flex-col gap-y-[0.7rem] w-full h-full p-[1.4rem] pl-[3rem]">
@@ -16,7 +16,6 @@ function Dashboard({children, title, returnPath=''}){
                         onClick={()=> router.push(returnPath)}>« Atrás</label>
                         : null
                     }
-                    
                 </div>
                 {children}
             </div>
