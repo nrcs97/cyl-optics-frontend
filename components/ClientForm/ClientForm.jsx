@@ -6,7 +6,7 @@ import axios from 'axios';
 import validationSchema from './validation'
 
 export default function ClientForm({fontWidth='normal', fontColor='black',
-    textColor='black'}){
+    textColor='black', width='385'}){
     const [page, setPage] = useState('first')
     const [formAnimation, setFormAnimation] = useState('blank')
     // variable que cambia a true o false en tiempo real para habilitar el boton submit
@@ -82,7 +82,7 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                     pl-[0.7rem] pr-[0.7rem] rounded-xl'
                     initial={{opacity: 0}}
                     animate={{opacity: 1}}
-                    transition={{duration: 1.5, delay: 1.3}}
+                    transition={{duration: 1, delay: 1.3}}
                     onClick={()=> {
                         setFormAnimation('reset')
                         }}>
@@ -90,8 +90,8 @@ export default function ClientForm({fontWidth='normal', fontColor='black',
                 </motion.button>
             </div>
             : null}
-        <motion.div className="flex flex-col gap-y-[0.6rem] w-[385px] h-[480px]
-            border p-[1.2rem] shadow rounded-xl"
+        <motion.div className={`flex flex-col gap-y-[0.6rem] w-[${width}px] h-[480px]
+            border p-[1.2rem] shadow rounded-xl bg-white`}
             initial={{opacity: 0}}
             animate={formAnimation}
             exit={{opacity: 0}}

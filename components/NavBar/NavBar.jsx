@@ -3,7 +3,6 @@ import Image from "next/image"
 import logo_2 from '@/public/logo_2.png'
 import { useRouter, usePathname } from "next/navigation"
 import React from "react"
-import { FaUser } from 'react-icons/fa6'
 
 function NavBar(){
     const router = useRouter()
