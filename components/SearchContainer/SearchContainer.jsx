@@ -59,7 +59,7 @@ export default function SearchContainer(){
         </div>
 
         { selectedClient ? 
-        <div className='flex justify-center items-start w-[450px]'>
+        <div className='flex justify-start items-start max-w-550px'>
             <DataSheet client={selectedClient} setSelectedClient={setSelectedClient}/>
         </div>
         : null }
