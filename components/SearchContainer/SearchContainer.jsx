@@ -9,10 +9,10 @@ export default function SearchContainer(){
     const [ input, setInput ] = useState('')
     const [ search, setSearch ] = useState([])
     const [ clients, setClients ] = useState([])
-    const [ selectedClient, setSelectedClient ] = useState(null)
+    const [ selectedClientId, setSelectedClientId ] = useState(null)
 
     useEffect(()=>{
-        axios.get('http://localhost:3001/clients/search?name&surname')
+        axios.get('http://localhost:3001/clients/search?name&surname&id')
         .then(response => setClients(response.data))
     }, [])
 
@@ -46,7 +46,7 @@ export default function SearchContainer(){
                     initial={{backgroundColor: 'rgba(0, 0, 0, 0)'}}
                     whileHover={{backgroundColor: '#E4E4E4'}}
                     whileTap={{scale: 0.98, transition: { duration: 0.1, type: 'easeIn'}}}
-                    onClick={()=> setSelectedClient(client)}>
+                    onClick={()=> setSelectedClientId(client.id)}>
                         <h1 className='text-[15px] text-black'>{client.surname + ', ' + client.name}</h1>
                         <h1 className='text-[15px] text-black'>{client.id}</h1>
                     </motion.div>)}
@@ -58,9 +58,9 @@ export default function SearchContainer(){
             }
         </div>
 
-        { selectedClient ? 
+        { selectedClientId ? 
         <div className='flex justify-start items-start max-w-550px'>
-            <DataSheet client={selectedClient} setSelectedClient={setSelectedClient}/>
+            <DataSheet id={selectedClientId} setSelectedClientId={setSelectedClientId}/>
         </div>
         : null }
     </motion.div>
