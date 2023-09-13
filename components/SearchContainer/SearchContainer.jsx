@@ -12,7 +12,7 @@ export default function SearchContainer(){
     const [ selectedClient, setSelectedClient ] = useState(null)
 
     useEffect(()=>{
-        axios.get('http://localhost:3001/clients')
+        axios.get('http://localhost:3001/clients/search?name&surname')
         .then(response => setClients(response.data))
     }, [])
 
@@ -48,7 +48,7 @@ export default function SearchContainer(){
                     whileTap={{scale: 0.98, transition: { duration: 0.1, type: 'easeIn'}}}
                     onClick={()=> setSelectedClient(client)}>
                         <h1 className='text-[15px] text-black'>{client.surname + ', ' + client.name}</h1>
-                        <h1 className='text-[15px] text-black'>{client.idNumber}</h1>
+                        <h1 className='text-[15px] text-black'>{client.id}</h1>
                     </motion.div>)}
                 </div>
                 : <div className='flex flex-col mt-[4rem] self-center items-center w-fit'>

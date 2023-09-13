@@ -227,7 +227,7 @@ export default function DataSheet({client, setSelectedClient}){
                 style={{background: 'linear-gradient(180deg, #FAFAFA, #CFCFCF)'}}
                 whileTap={{scale: 0.9}}
                 whileHover={{filter: 'brightness(1.15)'}}
-                onClick={()=> router.push('/admin/clients/detail')}>
+                onClick={()=> router.push(`/admin/clients/detail/${client.id}`)}>
                 <FaCircleArrowUp className='cursor-pointer' size={12}/>IR AL DETALLE</motion.label>
         </div>
     </motion.div>
