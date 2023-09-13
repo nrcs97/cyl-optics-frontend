@@ -3,15 +3,24 @@ import { FaClipboard } from 'react-icons/fa6'
 import { FaAddressCard } from 'react-icons/fa6'
 import { FaCircleArrowUp } from 'react-icons/fa6'
 import { FaCircleXmark } from 'react-icons/fa6'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import getAgeFromUTCDate from './getAgeFromUTCDate'
 
-export default function DataSheet({client, setSelectedClient}){
-    client.age = getAgeFromUTCDate(client.birthDate)
+export default function DataSheet({id, setSelectedClientId}){
     const [page, setPage] = useState('main')
     const router = useRouter()
+    const [client, setClient] = useState({})
     
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/clients/${id}`)
+        .then(response => {
+            const age = getAgeFromUTCDate(client.birthDate)
+            setClient({...response.data, age: age})
+        })
+    }, [])
+
     const button = {
         selected: {
             background: 'linear-gradient(180deg, #FAFAFA, #FAFAFA)',
@@ -44,7 +53,7 @@ export default function DataSheet({client, setSelectedClient}){
     transition={{duration: 0.6}}>
         <motion.div className='flex absolute w-fit h-fit self-end'>
             <FaCircleXmark className='cursor-pointer' size={20}
-                onClick={()=> setSelectedClient('')}/>
+                onClick={()=> setSelectedClientId('')}/>
         </motion.div>
         <div className='flex w-fit h-[4.5rem] overflow-hidden justify-start mb-[0.2rem] items-center'>
             <h1 className='font-extralight text-gray-900 text-[2.2rem] leading-[2.4rem]'>
