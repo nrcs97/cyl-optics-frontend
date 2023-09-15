@@ -35,111 +35,119 @@ export default function ClientDetail(){
         .then(response => setData(response.data))
     }, [])
 
-    return <Dashboard title='Ficha del cliente' returnPath="/admin/clients">
+    return <Dashboard title='Editar cliente' returnPath="/admin/clients">
         { data ?
-            <div className="flex flex-col gap-y-[2rem] w-[800px] h-content
-                border-[2px] border-yellow-600 border-opacity-20 p-[1.2rem] shadow rounded-xl bg-white">
-                <div className="flex justify-start gap-x-[2rem]">
+            <div className="flex flex-col gap-y-[2rem] w-[600px] h-content
+                p-[2rem] shadow-lg rounded-xl bg-white">
+                <div className="flex justify-between gap-x-[2rem]">
                     <h1 className="font-extralight text-gray-900 text-[2.3rem] leading-[2.4rem]">{data.name + ' ' + data.surname}</h1>
-                    <h1 className="font-extralight text-gray-900 text-[2.3rem] leading-[2.4rem]">#{id}</h1>
+                    <h1 className="font-extralight text-gray-900 text-[1.2rem] leading-[2.4rem]">Ficha #{id}</h1>
                 </div>
-                <div className="grid grid-rows-auto grid-cols-2 gap-4">
-                    <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
-                        onHoverStart={()=> setHoveredField('1')}
-                        onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="name"
-                            >Nombre
-                        </label>
-                        <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
-                                rounded bg-transparent`}
-                                id="name"
-                                name="name"
-                                type="text"
-                                placeholder={data.name}
-                                maxLength={25}
-                                tabIndex={1}/>
+                <div className="grid grid-rows-auto grid-cols-1 gap-4 pr-[2.1rem]">
+                    <div className="flex gap-x-[1rem]">
+                        <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
+                            onHoverStart={()=> setHoveredField('1')}
+                            onHoverEnd={()=> setHoveredField('0')}>
+                            <label className='text-black text-[1rem] font-normal' htmlFor="name"
+                                >Nombre
+                            </label>
+                            <div className="flex gap-x-[0.5rem] items-center">
+                                <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
+                                    rounded bg-transparent`}
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    placeholder={data.name}
+                                    maxLength={25}
+                                    tabIndex={1}/>
                                 <motion.div
+                                    className="cursor-pointer"
                                     initial={{opacity: 0}}
                                     animate={ hoveredField === '1' ? {opacity: 1} : {opacity: 0}}
                                     transition={{duration: 0.2}}
                                     whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
                                     <FaPen color="gray" size={14}/>
                                 </motion.div>
-                        </div>
-                    </motion.div>
-                    <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
-                        onHoverStart={()=> setHoveredField('2')}
-                        onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="surname"
-                            >Apellido
-                        </label>
-                        <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
-                                rounded bg-transparent`}
-                                id="surname"
-                                name="surname"
-                                type="text"
-                                placeholder={data.surname}
-                                maxLength={25}
-                                tabIndex={1}/>
-                            <motion.div
-                                initial={{opacity: 0}}
-                                animate={ hoveredField === '2' ? {opacity: 1} : {opacity: 0}}
-                                transition={{duration: 0.2}}
-                                whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
-                                <FaPen color="gray" size={14}/>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                    <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
-                        onHoverStart={()=> setHoveredField('3')}
-                        onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="birthDate"
-                            >Fecha de nacimiento
-                        </label>
-                        <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
-                                rounded bg-transparent`}
-                                id="birthDate"
-                                name="birthDate"
-                                type="text"
-                                placeholder={data.birthDate}
-                                maxLength={25}
-                                tabIndex={1}/>
-                            <motion.div
-                                initial={{opacity: 0}}
-                                animate={ hoveredField === '3' ? {opacity: 1} : {opacity: 0}}
-                                transition={{duration: 0.2}}
-                                whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
-                                <FaPen color="gray" size={14}/>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                    <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
-                        onHoverStart={()=> setHoveredField('4')}
-                        onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="idNumber"
-                            >D.N.I.
-                        </label>
-                        <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
-                                rounded bg-transparent`}
-                                id="idNumber"
-                                name="idNumber"
-                                type="text"
-                                placeholder={data.idNumber}
-                                maxLength={25}
-                                tabIndex={1}/>
-                            <motion.div
-                                initial={{opacity: 0}}
-                                animate={ hoveredField === '4' ? {opacity: 1} : {opacity: 0}}
-                                transition={{duration: 0.2}}
-                                whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
-                                <FaPen color="gray" size={14}/>
-                            </motion.div>                        
-                        </div>
-                    </motion.div>
+                            </div>
+                        </motion.div>
+                        <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
+                            onHoverStart={()=> setHoveredField('2')}
+                            onHoverEnd={()=> setHoveredField('0')}>
+                            <label className='text-black text-[1rem] font-normal' htmlFor="surname"
+                                >Apellido
+                            </label>
+                            <div className="flex gap-x-[0.5rem] items-center">
+                                <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
+                                    rounded bg-transparent`}
+                                    id="surname"
+                                    name="surname"
+                                    type="text"
+                                    placeholder={data.surname}
+                                    maxLength={25}
+                                    tabIndex={1}/>
+                                <motion.div
+                                    className="cursor-pointer"
+                                    initial={{opacity: 0}}
+                                    animate={ hoveredField === '2' ? {opacity: 1} : {opacity: 0}}
+                                    transition={{duration: 0.2}}
+                                    whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
+                                    <FaPen color="gray" size={14}/>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    </div>
+                    <div className="flex gap-x-[1rem]">
+                        <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
+                            onHoverStart={()=> setHoveredField('3')}
+                            onHoverEnd={()=> setHoveredField('0')}>
+                            <label className='text-black text-[1rem] font-normal' htmlFor="birthDate"
+                                >Fecha de nacimiento
+                            </label>
+                            <div className="flex gap-x-[0.5rem] items-center">
+                                <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
+                                    rounded bg-transparent`}
+                                    id="birthDate"
+                                    name="birthDate"
+                                    type="text"
+                                    placeholder={data.birthDate}
+                                    maxLength={25}
+                                    tabIndex={1}/>
+                                <motion.div
+                                    className="cursor-pointer"
+                                    initial={{opacity: 0}}
+                                    animate={ hoveredField === '3' ? {opacity: 1} : {opacity: 0}}
+                                    transition={{duration: 0.2}}
+                                    whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
+                                    <FaPen color="gray" size={14}/>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                        <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
+                            onHoverStart={()=> setHoveredField('4')}
+                            onHoverEnd={()=> setHoveredField('0')}>
+                            <label className='text-black text-[1rem] font-normal' htmlFor="idNumber"
+                                >D.N.I.
+                            </label>
+                            <div className="flex gap-x-[0.5rem] items-center">
+                                <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
+                                    rounded bg-transparent`}
+                                    id="idNumber"
+                                    name="idNumber"
+                                    type="text"
+                                    placeholder={data.idNumber}
+                                    maxLength={25}
+                                    tabIndex={1}/>
+                                <motion.div
+                                    className="cursor-pointer"
+                                    initial={{opacity: 0}}
+                                    animate={ hoveredField === '4' ? {opacity: 1} : {opacity: 0}}
+                                    transition={{duration: 0.2}}
+                                    whileTap={{scale: 0.9, transition: {duration: 0.05}}}>
+                                    <FaPen color="gray" size={14}/>
+                                </motion.div>                        
+                            </div>
+                        </motion.div>
+                    </div>
                     <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                         onHoverStart={()=> setHoveredField('5')}
                         onHoverEnd={()=> setHoveredField('0')}>
@@ -147,7 +155,7 @@ export default function ClientDetail(){
                             >Localidad
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-full h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="location"
                                 name="location"
@@ -156,6 +164,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '5' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -171,7 +180,7 @@ export default function ClientDetail(){
                             >Teléfono
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-full h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="phoneNumber"
                                 name="phoneNumber"
@@ -180,6 +189,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '6' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -195,7 +205,7 @@ export default function ClientDetail(){
                             >Correo electrónico
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-full h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="email"
                                 name="email"
@@ -204,6 +214,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '7' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -219,7 +230,7 @@ export default function ClientDetail(){
                             >Ocupación
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-full h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="occupation"
                                 name="occupation"
@@ -228,6 +239,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '8' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -236,13 +248,14 @@ export default function ClientDetail(){
                             </motion.div>
                         </div>
                     </motion.div>
+{/*                     
                     <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                         onHoverStart={()=> setHoveredField('9')}
                         onHoverEnd={()=> setHoveredField('0')}>
                         <label className='text-black text-[1rem] font-normal' htmlFor="healthInsurance"
                         >Obra Social</label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="healthInsurance"
                                 name="healthInsurance"
@@ -251,6 +264,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '9' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -266,7 +280,7 @@ export default function ClientDetail(){
                             >Dirección
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="address"
                                 name="address"
@@ -275,6 +289,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '10' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -290,7 +305,7 @@ export default function ClientDetail(){
                             >Código Postal
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="zipCode"
                                 name="zipCode"
@@ -299,6 +314,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '11' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -314,7 +330,7 @@ export default function ClientDetail(){
                             >Barrio
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="neighborhood"
                                 name="neighborhood"
@@ -323,6 +339,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '12' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -338,7 +355,7 @@ export default function ClientDetail(){
                             >IVA
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="iva"
                                 name="iva"
@@ -347,6 +364,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '13' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -361,7 +379,7 @@ export default function ClientDetail(){
                         <label className='text-black text-[1rem] font-normal' htmlFor="cuit"
                         >CUIT</label>
                         <div className="flex gap-x-[0.5rem] items-center">
-                            <input className={`w-[200px] h-[30px] text-[16px] pl-[0.3rem] border-b border -outline-0 text-black text-[0.9rem]
+                            <input className={`w-[220px] h-[36px] text-[16px] pl-[0.3rem] border-[2px] border-gray-700 text-black text-[0.9rem]
                                 rounded bg-transparent`}
                                 id="cuit"
                                 name="cuit"
@@ -370,6 +388,7 @@ export default function ClientDetail(){
                                 maxLength={25}
                                 tabIndex={1}/>
                             <motion.div
+                                className="cursor-pointer"
                                 initial={{opacity: 0}}
                                 animate={ hoveredField === '14' ? {opacity: 1} : {opacity: 0}}
                                 transition={{duration: 0.2}}
@@ -377,7 +396,7 @@ export default function ClientDetail(){
                                 <FaPen color="gray" size={14}/>
                             </motion.div>
                         </div>
-                    </motion.div>
+                    </motion.div> */}
                 </div>
             </div>
         : null }
