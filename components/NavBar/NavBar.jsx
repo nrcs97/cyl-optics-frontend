@@ -19,7 +19,8 @@ function NavBar(){
         router.push(route)
     }
 
-    return <nav className="flex flex-col items-center gap-y-[2.2rem] pt-[1rem] w-[250px] h-full bg-gray-50 border-r shadow-lg">
+    return <nav className="flex flex-col items-center gap-y-[2.2rem] pt-[1rem] w-[250px] h-full
+        bg-gray-50 border-r shadow-lg">
         <div className="flex w-[80%] h-[80px] justify-center align-center p-[1rem] cursor-pointer"
             onClick={handleClick}
             id='admin'>
