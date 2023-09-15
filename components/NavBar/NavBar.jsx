@@ -1,25 +1,25 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import logo_2 from '@/public/logo_2.png'
-import { useRouter, usePathname } from "next/navigation"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 import React from "react"
 
 function NavBar(){
+    const [ currentTab, setCurrentTab ] = useState('')
     const router = useRouter()
-    const pathname = usePathname().split('/')
-    const currentTab = pathname[2] || pathname[1]
 
     function handleClick(event){
         const { id } = event.target
+        setCurrentTab(id)
         let route = '/admin'
         if (id !== 'admin'){
             route += '/' + id
         }
-
         router.push(route)
     }
 
-    return <nav className="flex flex-col items-center gap-y-[2.2rem] pt-[1rem] w-[250px] h-full
+    return <nav className="flex flex-col items-center gap-y-[2.2rem] pt-[1rem] w-[250px] h-[100%]
         bg-gray-50 border-r shadow-lg">
         <div className="flex w-[80%] h-[80px] justify-center align-center p-[1rem] cursor-pointer"
             onClick={handleClick}

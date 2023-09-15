@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='flex flex-col gap-y-[1rem] w-[100vw] h-[100vh]'>
+        <div className='flex flex-col w-[100vw] h-auto'>
           { !path.includes('admin') ?
           <Header/> : null}
           {children}
