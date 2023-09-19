@@ -86,7 +86,8 @@ export default function Header(){
                 <div className="p-[2rem] pl-[0]">
                     <motion.label className="w-fit h-fit text-[0.8rem] text-gray-500 font-semibold font-creatoRegular leading-tight"
                         whileHover={{color: "rgb(0, 0, 0)",
-                        transition: {duration: 0.6}}}>
+                        transition: {duration: 0.6}}}
+                        onClick={()=> router.push('/login')}>
                         Login
                     </motion.label>
                 </div>

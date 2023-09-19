@@ -21,9 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className='flex flex-col w-[100vw] h-auto'>
-          { !path.includes('admin') ?
-          <Header/> : null}
+        <div className='flex flex-col w-[100vw] h-[100vh]'>
+          { path.includes('admin') || path.includes('login') ?
+          null : <Header/>}
           {children}
         </div>
       </body>
