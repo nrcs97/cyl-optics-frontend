@@ -75,7 +75,7 @@ export default function Header(){
                 }
             </div>
             <div className="flex justify-center self-center w-[20%] h-fit">
-                <Image className="object-cover self-end w-auto h-[60px]" alt='logo_cyl'
+                <Image className="object-cover self-end w-auto h-[70px]" alt='logo_cyl'
                 src={logo} width={1200} height={1000} />
             </div>
             <div className="flex justify-end gap-x-[0.3rem] w-[40%]">

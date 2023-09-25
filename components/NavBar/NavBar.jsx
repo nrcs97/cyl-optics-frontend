@@ -21,10 +21,10 @@ function NavBar(){
 
     return <nav className="flex flex-col items-center gap-y-[2.2rem] pt-[1rem] w-[250px] h-[100%]
         bg-gray-50 border-r shadow-lg">
-        <div className="flex w-[80%] h-[80px] justify-center align-center p-[1rem] cursor-pointer"
+        <div className="flex w-[80%] h-[80px] justify-center items-center cursor-pointer"
             onClick={handleClick}
             id='admin'>
-            <Image  className="w-auto h-[50px]"
+            <Image  className="w-auto h-[60px]"
                 src={logo_2} alt='logo' width={1200} height={1000}/>
         </div>
         <div className="flex flex-col gap-y-[1rem]">
