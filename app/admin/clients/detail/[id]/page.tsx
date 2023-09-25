@@ -40,15 +40,15 @@ export default function ClientDetail(){
             <div className="flex flex-col gap-y-[2rem] w-[600px] h-content
                 p-[2rem] shadow-lg rounded-xl bg-white">
                 <div className="flex justify-between gap-x-[2rem]">
-                    <h1 className="font-extralight text-gray-900 text-[2.3rem] leading-[2.4rem]">{data.name + ' ' + data.surname}</h1>
-                    <h1 className="font-extralight text-gray-900 text-[1.2rem] leading-[2.4rem]">Ficha #{id}</h1>
+                    <h1 className="select-none font-extralight text-gray-900 text-[2.3rem] leading-[2.4rem]">{data.name + ' ' + data.surname}</h1>
+                    <h1 className="select-none font-extralight text-gray-900 text-[1.2rem] leading-[2.4rem]">Ficha #{id}</h1>
                 </div>
                 <div className="grid grid-rows-auto grid-cols-1 gap-4 pr-[2.1rem]">
                     <div className="flex gap-x-[1rem]">
                         <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                             onHoverStart={()=> setHoveredField('1')}
                             onHoverEnd={()=> setHoveredField('0')}>
-                            <label className='text-black text-[1rem] font-normal' htmlFor="name"
+                            <label className='select-none text-black text-[1rem] font-normal' htmlFor="name"
                                 >Nombre
                             </label>
                             <div className="flex gap-x-[0.5rem] items-center">
@@ -73,7 +73,7 @@ export default function ClientDetail(){
                         <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                             onHoverStart={()=> setHoveredField('2')}
                             onHoverEnd={()=> setHoveredField('0')}>
-                            <label className='text-black text-[1rem] font-normal' htmlFor="surname"
+                            <label className='select-none text-black text-[1rem] font-normal' htmlFor="surname"
                                 >Apellido
                             </label>
                             <div className="flex gap-x-[0.5rem] items-center">
@@ -100,7 +100,7 @@ export default function ClientDetail(){
                         <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                             onHoverStart={()=> setHoveredField('3')}
                             onHoverEnd={()=> setHoveredField('0')}>
-                            <label className='text-black text-[1rem] font-normal' htmlFor="birthDate"
+                            <label className='select-none text-black text-[1rem] font-normal' htmlFor="birthDate"
                                 >Fecha de nacimiento
                             </label>
                             <div className="flex gap-x-[0.5rem] items-center">
@@ -125,7 +125,7 @@ export default function ClientDetail(){
                         <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                             onHoverStart={()=> setHoveredField('4')}
                             onHoverEnd={()=> setHoveredField('0')}>
-                            <label className='text-black text-[1rem] font-normal' htmlFor="idNumber"
+                            <label className='select-none text-black text-[1rem] font-normal' htmlFor="idNumber"
                                 >D.N.I.
                             </label>
                             <div className="flex gap-x-[0.5rem] items-center">
@@ -151,7 +151,7 @@ export default function ClientDetail(){
                     <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                         onHoverStart={()=> setHoveredField('5')}
                         onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="location"
+                        <label className='select-none text-black text-[1rem] font-normal' htmlFor="location"
                             >Localidad
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
@@ -176,7 +176,7 @@ export default function ClientDetail(){
                     <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                         onHoverStart={()=> setHoveredField('6')}
                         onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="phoneNumber"
+                        <label className='select-none text-black text-[1rem] font-normal' htmlFor="phoneNumber"
                             >Teléfono
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
@@ -201,7 +201,7 @@ export default function ClientDetail(){
                     <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                         onHoverStart={()=> setHoveredField('7')}
                         onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="email"
+                        <label className='select-none text-black text-[1rem] font-normal' htmlFor="email"
                             >Correo electrónico
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
@@ -226,7 +226,7 @@ export default function ClientDetail(){
                     <motion.div className='flex flex-col gap-y-[0.2rem] justify-start'
                         onHoverStart={()=> setHoveredField('8')}
                         onHoverEnd={()=> setHoveredField('0')}>
-                        <label className='text-black text-[1rem] font-normal' htmlFor="occupation"
+                        <label className='select-none text-black text-[1rem] font-normal' htmlFor="occupation"
                             >Ocupación
                         </label>
                         <div className="flex gap-x-[0.5rem] items-center">
