@@ -1,14 +1,14 @@
-![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
-
-# **OPTICS** | Proyecto personal
+# **OPTICS** | Personal project (currently in development)
 
 ## **ABOUT 💬**
 
-Optics is a web application for optical service and business managment.
+Optics is a web application for optical service and business managment. The main objective of this application is to make the daily tasks of an optical company more efficient.
 
-<br />
+You are now in the frontend repository. If you want to check the backend repository, follow this link:
 
----
+[Backend repository](https://github.com/nrcs97/cyl-optics-backend)
+
+<!-- ---
 
 ## **GETTING STARTED**
 
@@ -17,4 +17,4 @@ Optics is a web application for optical service and business managment.
 ```
 npm install
 ```
-- Wherever more
+- Wherever more -->
