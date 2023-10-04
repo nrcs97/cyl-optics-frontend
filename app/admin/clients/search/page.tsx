@@ -4,9 +4,7 @@ import SearchContainer from '@/components/SearchContainer/SearchContainer'
 
 export default function SearchClient(){
     
-    return <Dashboard title={'Buscar clientes'} returnPath={'/admin/clients'}>
-        <div className="flex flex-col">
-            <SearchContainer/>
-        </div>
-    </Dashboard>
+    return <div className="flex flex-col">
+        <SearchContainer/>
+    </div>
 }
