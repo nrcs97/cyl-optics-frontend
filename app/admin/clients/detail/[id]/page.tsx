@@ -35,8 +35,7 @@ export default function ClientDetail(){
         .then(response => setData(response.data))
     }, [])
 
-    return <Dashboard title='Editar cliente' returnPath="/admin/clients">
-        { data ?
+    return <> { data ?
             <div className="flex flex-col gap-y-[2rem] w-[600px] h-content
                 p-[2rem] shadow-lg rounded-xl bg-white">
                 <div className="flex justify-between gap-x-[2rem]">
@@ -400,5 +399,5 @@ export default function ClientDetail(){
                 </div>
             </div>
         : null }
-    </Dashboard>
+    </>
 }
