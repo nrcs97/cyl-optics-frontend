@@ -22,8 +22,8 @@ export default function Login(){
         .then(response => {
             setSubmit('loading')
             setTimeout(()=>{
-                const tokens = JSON.stringify(response.data)
-                localStorage.setItem('session', tokens)
+                const tokens = response.data
+                document.cookie = `tokens=${JSON.stringify(tokens)}`
                 router.push('/')
             }, 2000)
         }, error => {
