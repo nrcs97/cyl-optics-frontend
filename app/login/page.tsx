@@ -23,7 +23,7 @@ export default function Login(){
             setSubmit('loading')
             setTimeout(()=>{
                 const tokens = response.data
-                document.cookie = `tokens=${JSON.stringify(tokens)}`
+                document.cookie = `cyl_user=${JSON.stringify(tokens)}`
                 router.push('/')
             }, 2000)
         }, error => {

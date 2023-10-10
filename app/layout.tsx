@@ -21,10 +21,15 @@ export default function RootLayout({
   
   return (
     <html lang="en">
+      <head>
+        <title>C&L Correa Optics</title>
+      </head>
       <body className={inter.className}>
         <div className='flex flex-col w-[100vw] h-[100vh]'>
-          { path.includes('admin') || path.includes('login') ?
-          null : <Header/>}
+          { (path.includes('appointments') || path.includes('clients') ||
+            path.includes('products') || path[1] === '')  && 
+            (!path.includes('admin') && !path.includes('login')) ?
+          <Header/> : null}
           {children}
         </div>
       </body>
