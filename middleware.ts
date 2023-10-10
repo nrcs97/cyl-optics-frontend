@@ -1,10 +1,19 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
-export async function middleware(request: NextRequest) {
-   if (request.nextUrl.pathname.startsWith('/admin')){
-        const tokensCookie = request.cookies.get('tokens')
-        if (!tokensCookie) return NextResponse.redirect(new URL('/error', request.url))
+export async function middleware(req: NextRequest) {   
+    console.log(req)
+    const pathname = req.nextUrl.pathname
+    
+    if (!pathname.includes('_next') &&
+        !pathname.includes('favicon.ico') &&
+        !pathname.includes('error')){
+        
+        const tokensCookie = req.cookies.get('cyl_user')
+        if (!tokensCookie){
+            if (pathname.includes('admin')) return NextResponse.redirect(new URL('/error', req.url))
+            else return NextResponse.next()
+        }
 
         const tokens : {accessToken: string, refreshToken: string} = JSON.parse(tokensCookie.value)
         if (typeof tokens.accessToken !== undefined){
@@ -15,14 +24,18 @@ export async function middleware(request: NextRequest) {
                     body: JSON.stringify({token: tokens.accessToken}),
                 })
             const { authorization } = await response.json()
-            if (!(authorization)) return NextResponse.redirect(new URL('/error', request.url))
-
+            
+            if (!(authorization)){ 
+                if (req.nextUrl.pathname.includes('admin')){
+                    return NextResponse.redirect(new URL('/error', req.url))
+                } else NextResponse.next()
+            }
+            
             return NextResponse.next()  
         } else {
-            return NextResponse.redirect(new URL('/error', request.url))
+            return NextResponse.redirect(new URL('/error', req.url))
         }
     }
 
-    // return NextResponse.redirect(new URL('/', request.url))
     return NextResponse.next()
 }
