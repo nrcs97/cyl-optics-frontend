@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
-export async function middleware(req: NextRequest) {   
-    console.log(req)
+export async function middleware(req: NextRequest) {
     const pathname = req.nextUrl.pathname
     
     if (!pathname.includes('_next') &&
@@ -30,7 +29,7 @@ export async function middleware(req: NextRequest) {
                     return NextResponse.redirect(new URL('/error', req.url))
                 } else NextResponse.next()
             }
-            
+
             return NextResponse.next()  
         } else {
             return NextResponse.redirect(new URL('/error', req.url))

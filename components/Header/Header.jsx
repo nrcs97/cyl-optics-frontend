@@ -1,4 +1,3 @@
-'use client'
 import { motion, useScroll, useSpring } from "framer-motion"
 import { useState } from "react"
 import Image from "next/image"
@@ -6,8 +5,23 @@ import logo from "../../public/logo.png"
 import login_logo from '@/public/login_logo.png'
 import { usePathname } from 'next/navigation';
 import { useRouter } from "next/navigation"
+// import { cookies } from 'next/headers'
 
-export default function Header(){
+// async function getAuthorization() {
+//     // const { accessToken } = cookies().get('cyl_user')
+//     // const response = await fetch('http://localhost:3001/token/validate', 
+//     //     {
+//     //         method: 'POST',
+//     //         headers: {'Content-Type': 'application/json'},
+//     //         body: JSON.stringify({token: tokens.accessToken}),
+//     //     })
+//     //     .then(res => res.json())
+//     // const { authorization } = response
+//     // return authorization
+// }
+
+export default async function Header(){
+    // const authorization = await getAuthorization()
     const router = useRouter()
     let path = usePathname().slice(1)
     switch (path){
@@ -84,21 +98,25 @@ export default function Header(){
                         src={login_logo} width={300} height={300}/>
                 </div>
                 <div className="p-[2rem] pl-[0]">
+                    {/* {authorization ? 
+                        <div>
+                            TOOGLE BAR
+                        </div>
+                        : <motion.label className="w-fit h-fit text-[0.8rem] text-gray-500 font-semibold font-creatoRegular leading-tight"
+                            whileHover={{color: "rgb(0, 0, 0)",
+                            transition: {duration: 0.6}}}
+                            onClick={()=> router.push('/login')}>
+                            Login
+                        </motion.label>
+                    } */}
                     <motion.label className="w-fit h-fit text-[0.8rem] text-gray-500 font-semibold font-creatoRegular leading-tight"
-                        whileHover={{color: "rgb(0, 0, 0)",
-                        transition: {duration: 0.6}}}
-                        onClick={()=> router.push('/login')}>
-                        Login
+                            whileHover={{color: "rgb(0, 0, 0)",
+                            transition: {duration: 0.6}}}
+                            onClick={()=> router.push('/login')}>
+                            Login
                     </motion.label>
                 </div>
             </div>
         </div>
-        
-        {/* <div>
-            <motion.div
-                style={{scaleX}}
-                className="bg-red-500 h-[4px] w-[100%] origin-left"/> 
-        </div> */}
-        {/* 'origin-left' configura la posición del comienzo de la transformación */}
     </header>
 }
