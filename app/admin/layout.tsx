@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation'
 
 function DashboardLayout({children} :
     {children: React.ReactNode}){
-    
     const router = useRouter()
     const pathname = usePathname().split('/')
     const title = pathname.pop()
