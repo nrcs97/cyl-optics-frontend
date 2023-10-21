@@ -1,13 +1,9 @@
 import type { ReactNode } from "react"
 import { cookies } from 'next/headers'
+import SessionPopUp from "../SessionPopUp/SessionPopUp"
 import AuthRouter from "../AuthRouter/AuthRouter"
 
-async function getAuthorization(){
-    const cookiesList : any = cookies()
-    const tokensCookie : string = cookiesList.get('cyl_user')?.value
-    if (!tokensCookie) return false
-    
-    const tokens : {accessToken: string, refreshToken: string} = JSON.parse(tokensCookie)    
+async function getAuthorization(tokens: any){
     if (typeof tokens.accessToken !== undefined){
         const response = await fetch('http://localhost:3001/token/validate', 
             {
@@ -20,12 +16,22 @@ async function getAuthorization(){
     } else {
         return false
     }
-  }
+}
 
 export default async function AuthMiddleware({children} : { children: ReactNode }) {
-    const authorization : boolean = await getAuthorization()
+    const tokensCookie : string | undefined = cookies().get('cyl_user')?.value
+    
+    if (tokensCookie !== undefined){
+        const tokens : {accessToken: string, refreshToken: string} = JSON.parse(tokensCookie)
+        const authorization : boolean = await getAuthorization(tokens)
+
+        if (!authorization) {
+            console.log('no autorizado') //
+            return <>{children}<SessionPopUp refreshToken={tokens.refreshToken}/></>}
+        
+        console.log('autorizado') //
+        return <>{children}</>
+    }
    
-    return <AuthRouter authorization={authorization}>
-        {children}
-    </AuthRouter>
+    return <AuthRouter>{children}</AuthRouter>
 }
