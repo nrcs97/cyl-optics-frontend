@@ -2,7 +2,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '../components/Header/Header'
-import AuthMiddleware from '@/components/AuthMiddleware/AuthMiddleware';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,9 +19,7 @@ export default function RootLayout({children}: {children: React.ReactNode}){
       <body className={inter.className}>
         <div className='flex flex-col w-[100vw] h-[100vh]'>
           <Header/>
-          <AuthMiddleware>
-            {children}
-          </AuthMiddleware>
+          {children}
         </div>
       </body>
     </html>
