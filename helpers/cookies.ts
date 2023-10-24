@@ -9,13 +9,11 @@ export function getCookie(name : string) : any{
     return cookie[1]
 }
 
-export function setCookie(key: string, value: string) : void{    
+export function setCookie(key: string, value: string, expires: string = '') : void{    
     const cookies : string[][] = document.cookie.split('; ').map(cookie => cookie.split('='))
     let cookiesParsed = Object.fromEntries(cookies)
     if (!cookiesParsed[key]) throw new Error('Cookies: unexisting key')
-
-    cookiesParsed[key] = value
-    cookiesParsed = Object.entries(cookiesParsed).map(cookie => cookie.join('=')).join('; ')
+    console.log(`${key}=${value};${expires ? ' expires=' + expires : ''}`)
     
-    document.cookie = cookiesParsed
+    document.cookie = `${key}=${value};${expires ? ' expires=' + expires : ''}`
 }

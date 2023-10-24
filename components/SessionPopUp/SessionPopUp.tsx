@@ -1,34 +1,36 @@
 'use client'
 import { useRouter } from "next/navigation"
-import axios from "axios"
-import { getCookies, setCookies } from '../../helpers/cookies'
+import { useEffect, useState } from "react"
+import { Logout, Update } from "@/helpers/session"
+import { getAuthorization } from "@/helpers/getAuthorization"
 
-export default function SessionPopUp({refreshToken}: {refreshToken : string}){
+export default function SessionPopUp(){
     const router = useRouter()
+    const [show, setShow] = useState<boolean>(false)
+
+    useEffect(()=>{
+        getAuthorization().then( auth => {
+            if (!auth.accessToken && auth.refreshToken) setShow(true)
+        })
+    }, [])
 
     function handleClick(e: any){
         const { name } = e.target
         switch (name){
             case 'yes':
-                const cookies: any = getCookies()
-
-                axios.post('http://localhost:3001/token/refresh', {token: refreshToken})
-                .then(response => {
-                    const { newAccessToken } : {newAccessToken: string} = response.data
-                    const userCookie = JSON.parse(cookies.cyl_user)              
-                    setCookies('cyl_user', 
-                        JSON.stringify({...userCookie, accessToken: newAccessToken}))
-                    
-                    router.refresh()
-                })
-                .catch(error => console.log(error))
+                Update()
+                setShow(false)
+                break;
+            case 'logout':
+                Logout()
+                router.push('/')
+                setShow(false)
                 break;
             default:
                 break;
         }
     }
-
-    return <div className="absolute flex justify-center w-[100vw] h-[100vh]" 
+    if (show) return <div className="absolute flex justify-center w-[100vw] h-[100vh]" 
         style={{backgroundColor: 'rgba(0, 0, 0, 0.1)'}}>
         <div className="self-center flex flex-col
             justify-center items-center shadow bg-white rounded-xl w-[300px]
@@ -42,4 +44,5 @@ export default function SessionPopUp({refreshToken}: {refreshToken : string}){
             </div>
         </div>
     </div>
+    else return null
 }
