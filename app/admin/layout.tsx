@@ -9,24 +9,25 @@ import { getAuthorization } from '@/helpers/getAuthorization'
 
 function DashboardLayout({children} :
     {children: React.ReactNode}){
-    const router = useRouter()
     const pathname = usePathname().split('/')
     const title = pathname.pop()
     pathname.shift()
     const returnPath = '/' + pathname.join('/')
-
+        
+    const router = useRouter()
     const [ show, setShow ] = useState(false)
     const [redirect, setRedirect] = useState(false)
 
     useEffect(()=>{
         getAuthorization().then(auth => {            
             if (!auth.refreshToken) setRedirect(true)
-            // analizar casos con accessToken: false y como lanzar PopUp
+            else setShow(true)            
         })
     }, [show])
 
     if (redirect) notFound()
     if (!show) return <></>
+
     else return <main className="flex h-full overflow-y-scroll">
         <NavBar/>
         <div className="flex flex-col gap-y-[0.7rem] w-full h-full pl-[3rem] pr-[3rem] pt-[1.5rem] pb-[3rem]">
