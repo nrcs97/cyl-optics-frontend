@@ -4,6 +4,7 @@ import logo_2 from '@/public/logo_2.png'
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import React from "react"
+import { Logout } from "@/helpers/session"
 
 function NavBar(){
     const [ currentTab, setCurrentTab ] = useState('')
@@ -58,11 +59,16 @@ function NavBar(){
                 whileHover={{color: 'rgb(0, 0, 0)'}}
                 transition={{duration: 0.6}}
                 >Estadísticas</motion.h1>
+            <hr/>
             <motion.h1 className={`${currentTab === 'others' ? 'text-black' : 'text-gray-500'}
                 text-left text-[1.1rem] font-light cursor-pointer`}
                 whileHover={{color: 'rgb(0, 0, 0)'}}
                 transition={{duration: 0.6}}
-                >Otro</motion.h1>
+                onClick={()=>{
+                    Logout()
+                    router.push('/')
+                }}
+                >Logout</motion.h1>
         </div>
     </nav>
 }
