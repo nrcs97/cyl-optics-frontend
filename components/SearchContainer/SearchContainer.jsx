@@ -2,6 +2,7 @@ import { FaSearch } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 import { FaFolderOpen } from 'react-icons/fa'
 import axios from 'axios'
+import { getCookie } from '@/helpers/cookies'
 import { motion } from 'framer-motion'
 import DataSheet from '@/components/DataSheet/DataSheet'
 
@@ -12,8 +13,14 @@ export default function SearchContainer(){
     const [ selectedClientId, setSelectedClientId ] = useState(null)
 
     useEffect(()=>{
-        axios.get('http://localhost:3001/clients/search?name&surname&id')
+        const token = JSON.parse(getCookie('cyl_user'))
+        axios.get('http://localhost:3001/clients/search?name&surname&id',{
+            headers: {
+                'Authorization': `Bearer ${token.accessToken}`
+            }
+        })
         .then(response => setClients(response.data))
+        .catch(err => alert(err.response.data))
     }, [])
 
     function handleChange(value){

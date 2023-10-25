@@ -3,6 +3,7 @@ import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { FaPen } from 'react-icons/fa6'
 import axios from "axios"
+import { getCookie } from "@/helpers/cookies"
 import Dashboard from '@/components/Dashboard/Dashboard'
 import { motion } from "framer-motion"
 
@@ -31,7 +32,12 @@ export default function ClientDetail(){
     const [ data, setData] = useState<DatosUsuario>()
 
     useEffect(()=>{
-        axios.get(`http://localhost:3001/clients/${id}`)
+        const token = JSON.parse(getCookie('cyl_user'))
+        axios.get(`http://localhost:3001/clients/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token.accessToken}`
+            }
+        })
         .then(response => setData(response.data))
     }, [])
 

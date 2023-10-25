@@ -5,6 +5,7 @@ import { FaCircleArrowUp } from 'react-icons/fa6'
 import { FaCircleXmark } from 'react-icons/fa6'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { getCookie } from '@/helpers/cookies'
 import { useRouter } from 'next/navigation'
 import getAgeFromUTCDate from './getAgeFromUTCDate'
 
@@ -14,11 +15,17 @@ export default function DataSheet({id, setSelectedClientId}){
     const [client, setClient] = useState({})
     
     useEffect(()=>{
-        axios.get(`http://localhost:3001/clients/${id}`)
+        const token = JSON.parse(getCookie('cyl_user'))
+        axios.get(`http://localhost:3001/clients/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token.accessToken}`
+            }
+        })
         .then(response => {
             const age = getAgeFromUTCDate(client.birthDate)
             setClient({...response.data, age: age})
         })
+        .catch(err => alert(err.response.data))
     }, [])
 
     const button = {

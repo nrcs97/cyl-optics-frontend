@@ -24,7 +24,7 @@ export default function Login(){
             setTimeout(()=>{
                 const tokens = response.data
                 document.cookie = `cyl_user=${JSON.stringify(tokens)}`
-                router.push('/')
+                router.push('/admin')
             }, 2000)
         }, error => {
             const {message} = error.response.data
