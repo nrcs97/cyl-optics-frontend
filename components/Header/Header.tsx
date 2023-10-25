@@ -7,6 +7,7 @@ import login_logo from '@/public/login_logo.png'
 import { usePathname } from 'next/navigation';
 import { useRouter } from "next/navigation"
 import { getAuthorization } from "@/helpers/getAuthorization"
+import { FaArrowTurnUp } from 'react-icons/fa6'
 
 export default function Header(){
     const router = useRouter()
@@ -103,10 +104,15 @@ export default function Header(){
                 <div className="flex justify-end gap-x-[0.3rem] w-[40%]">
                     <div className="p-[2rem] pl-[0]">
                         {session ? 
-                            <motion.div className="text-black"
+                            <motion.div className="flex justify-center items-center
+                            gap-x-[0.2rem] border-[1px] border-gray-300 shadow-md
+                            rounded-xl bg-black text-white text-[0.6rem] p-[0.2rem]
+                            font-semibold pl-[0.5rem] pr-[0.5rem] cursor-pointer"
                             initial={{opacity: 0}}
-                            animate={{opacity: 1}}>
-                                TOOGLE BAR
+                            animate={{opacity: 1}}
+                            onClick={()=> router.push('/admin')}>
+                                <h1>Volver al panel</h1>
+                                <FaArrowTurnUp size={10}/>
                             </motion.div>
                             : <motion.div className="flex gap-x-[0.2rem] justify-items
                                 items-center relative top-[0.075rem] flex items-center grayscale"
