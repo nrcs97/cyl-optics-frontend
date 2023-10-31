@@ -4,6 +4,9 @@ import { getCookie, setCookie } from "./cookies"
 export async function Logout(){
     const userCookie = JSON.parse(getCookie('cyl_user'))
     axios.delete(`http://localhost:3001/auth/logout/${userCookie.refreshToken}`)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+    
     const currentDate = new Date(0)
     setCookie('cyl_user', '', currentDate.toUTCString())
 }

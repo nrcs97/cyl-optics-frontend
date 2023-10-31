@@ -139,6 +139,13 @@ export default function DataSheet({id, setSelectedClientId}){
                         border-[1px] border-black'>{client.occupation}</h1>
                     </div>
                 </div>
+                <div className='flex gap-x-[0.8rem] justify-between'>
+                    <h1 className='text-black text-[17px] font-light'>Fecha de nacimiento:</h1>
+                    <div className='w-[50%]'>
+                        <h1 className='text-black text-center font-black min-h-[24px]'>{client.birthDate}</h1>
+                        <hr className='border-black'/>
+                    </div>
+                </div>
                 <div className='flex gap-x-[1rem] justify-between'>
                     <h1 className={`text-black text-[17px] font-light ${client.email === '' ? 'opacity-50' : ''}`}
                         >Email:</h1>
@@ -175,13 +182,6 @@ export default function DataSheet({id, setSelectedClientId}){
                     <h1 className={`text-black text-[17px] font-light ${client.iva === '' ? 'opacity-50' : ''}`}>IVA:</h1>
                     <div className={`w-[50%] ${client.iva === '' ? 'opacity-20' : ''}`}>
                         <h1 className='text-black font-black min-h-[24px]'>{client.iva}</h1>
-                        <hr className='border-black'/>
-                    </div>
-                </div>
-                <div className='flex gap-x-[0.8rem] justify-between'>
-                    <h1 className='text-black text-[17px] font-light'>Fecha de nacimiento:</h1>
-                    <div className='w-[50%]'>
-                        <h1 className='text-black text-center font-black min-h-[24px]'>{client.birthDate}</h1>
                         <hr className='border-black'/>
                     </div>
                 </div>
