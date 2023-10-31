@@ -1,5 +1,5 @@
 'use client'
-import { motion, useScroll, useSpring } from "framer-motion"
+import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import logo from "../../public/logo.png"
@@ -35,13 +35,6 @@ export default function Header(){
     const [session, setSession ] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(true)
 
-    const { scrollYProgress } = useScroll()
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 25,
-        restDelta: 0.0001
-    })
-
     useEffect(()=>{
         getAuthorization()
         .then(auth => {
@@ -75,10 +68,9 @@ export default function Header(){
         }
         router.push(newPath)
     }
-        
 
     if (show) {
-        return <header className="flex flex-col self-center w-[1000px] bg-gray-50 pt-[0.5rem]">
+        return <header className="flex flex-col self-center w-[1000px] bg-gray-50 pt-[0.6rem] pb-[0.8rem]">
             <div className="flex self-left justify-center w-[100%]">
                 <div className="flex w-[40%] text-[0.8rem] p-[2rem] text-gray-500 font-semibold font-creatoRegular leading-tight gap-x-[2rem]">
                     { tabs.map(tab => <div className="flex flex-col" key={tab}>
@@ -107,7 +99,8 @@ export default function Header(){
                             <motion.div className="flex justify-center items-center
                             gap-x-[0.2rem] border-[1px] border-gray-300 shadow-md
                             rounded-xl bg-black text-white text-[0.6rem] p-[0.2rem]
-                            font-semibold pl-[0.5rem] pr-[0.5rem] cursor-pointer"
+                            font-semibold pl-[0.5rem] pr-[0.5rem] cursor-pointer
+                            h-[24px] w-auto"
                             initial={{opacity: 0}}
                             animate={{opacity: 1}}
                             onClick={()=> router.push('/admin')}>

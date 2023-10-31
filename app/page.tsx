@@ -1,21 +1,33 @@
 'use client'
 import Carousel from '../components/Carousel/Carousel'
-import { useRouter } from "next/navigation"
+import { motion, useScroll } from 'framer-motion'
+import { useRef } from 'react'
 
 export default function Home(){
-  const router = useRouter()
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({target: ref, offset: ["0 1.33", "0.66 1"]})
 
-  return <main className="flex flex-col self-center gap-y-[2rem] pb-[2.5rem] w-[1000px] min-h-[100vh] bg-gray-50">
+  return <main className="flex flex-col items-center pb-[2.5rem] w-[100vw] min-h-[100vh] bg-gray-50">
     <Carousel/>
-    <section>
-      <div className='flex flex-col items-center gap-y-[1.5rem] w-[100%]'>
-        <h1 className='text-[2.6rem] font-thin font-creatoRegular leading-tight text-black'>
-          Reserva un turno!
-        </h1>
-          <button className='bg-orange-300 p-[0.8rem] text-black rounded-3xl font-normal'
-            onClick={()=> router.push('/turnos')}
-            >RESERVAR</button>
-      </div>
+    <motion.div className='fixed w-[100%] h-[20px] bg-red-500' style={{scaleX: scrollYProgress}}/>
+    <motion.section className='flex flex-col gap-y-[4rem] w-[80%] h-[100vh] border p-[1.4rem]'>
+      <h1 className='text-[56px] text-gray-500 font-thin'>SECCIÓN 1</h1>
+      <h1 className='text-[36px] text-gray-500 font-thin self-center'>DATO 1</h1>
+      <h1 className='text-[36px] text-gray-500 font-thin self-center'>DATO 2</h1>
+      <h1 className='text-[36px] text-gray-500 font-thin self-center'>DATO 3</h1>
+    </motion.section>
+
+    <motion.section ref={ref} className='w-[80%] h-[100vh] border pt-[1.4rem] pb-[1.4rem]'
+      style={{opacity: scrollYProgress}}>
+      <h1 className='text-[48px] text-gray-500 font-thin'>SECCIÓN 2</h1>
+    </motion.section>
+
+    <section className='w-[80%] h-[100vh] border pt-[1.4rem] pb-[1.4rem]'>
+      <h1 className='text-[48px] text-gray-500 font-thin'>SECCIÓN 3</h1>
+    </section>
+
+    <section className='w-[80%] h-[100vh] border pt-[1.4rem] pb-[1.4rem]'>
+      <h1 className='text-[48px] text-gray-500 font-thin'>SECCIÓN 4</h1>
     </section>
   </main>
 }

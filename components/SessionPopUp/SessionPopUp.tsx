@@ -1,18 +1,19 @@
 'use client'
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { Logout, Update } from "@/helpers/session"
 import { getAuthorization } from "@/helpers/getAuthorization"
 
 export default function SessionPopUp(){
     const router = useRouter()
+    const pathname = usePathname()
     const [show, setShow] = useState<boolean>(false)
 
     useEffect(()=>{
         getAuthorization().then( auth => {
             if (!auth.accessToken && auth.refreshToken) setShow(true)
         })
-    }, [])
+    }, [pathname])
 
     function handleClick(e: any){
         const { name } = e.target
@@ -23,8 +24,8 @@ export default function SessionPopUp(){
                 break;
             case 'logout':
                 Logout()
-                router.push('/')
                 setShow(false)
+                setTimeout(()=> router.push('/'), 1500)                
                 break;
             default:
                 break;

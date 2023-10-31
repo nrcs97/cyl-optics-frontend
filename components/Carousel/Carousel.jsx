@@ -10,7 +10,14 @@ export default function Carousel(){
     const images = [img1, img2, img3]
     const [position, setPosition] = useState(0)
 
-    return <div className="flex overflow-hidden w-[100%] h-[400px]">
+    function slide(position){
+        setTimeout(()=> setPosition(position), 7000)
+    }
+
+    if (position < 2) slide(position + 1)
+    else slide(0)
+
+    return <div className="flex overflow-hidden w-[1000px] h-[400px]">
         <div className='flex'>
             {images.map((img, index)=>
                 <motion.div

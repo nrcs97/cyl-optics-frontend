@@ -2,10 +2,12 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from '../components/Header/Header'
-import { getAuthorization } from '@/helpers/getAuthorization'
 import SessionPopUp from '@/components/SessionPopUp/SessionPopUp'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter'
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,7 +22,7 @@ export default function RootLayout({children} : {children: React.ReactNode}){
         <title>C&L Correa Optics</title>
       </head>
       <body className={inter.className}>
-        <div className='flex flex-col w-[100vw] h-[100vh]'>
+        <div className='flex flex-col w-[100vw] min-h-[100vh]'>
           <Header/>
           {children}
           <SessionPopUp/>
