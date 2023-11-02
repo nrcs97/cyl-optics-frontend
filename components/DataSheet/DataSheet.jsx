@@ -217,6 +217,14 @@ export default function DataSheet({id, setSelectedClientId}){
         </div>
         <div className='flex justify-around'>
             <motion.label className='flex justify-center items-center gap-x-[0.4rem] p-[0.3rem]
+                font-semibold w-fit h-fit text-gray-800 text-[12px] rounded-xl shadow-lg
+                cursor-pointer select-none'
+                style={{background: 'linear-gradient(180deg, #FAFAFA, #CFCFCF)'}}
+                whileTap={{scale: 0.9}}
+                whileHover={{filter: 'brightness(1.15)'}}
+                onClick={()=> router.push(`/admin/clients/detail/${client.id}`)}>
+                <FaCircleArrowUp className='cursor-pointer' size={12}/>IR AL DETALLE</motion.label>
+            <motion.label className='flex justify-center items-center gap-x-[0.4rem] p-[0.3rem]
                 font-semibold w-fit h-fit bg-gray-600 text-gray-200 text-[12px] rounded-xl shadow-lg
                 cursor-pointer select-none'
                 variants={button}
@@ -237,14 +245,6 @@ export default function DataSheet({id, setSelectedClientId}){
                 whileHover={{filter: 'brightness(1.15)'}}
                 onClick={()=> setPage(page !== 'history' ? 'history' : 'main')}>
                 <FaClipboard size={12}/>HISTORIAL</motion.label>
-            <motion.label className='flex justify-center items-center gap-x-[0.4rem] p-[0.3rem]
-                font-semibold w-fit h-fit text-gray-800 text-[12px] rounded-xl shadow-lg
-                cursor-pointer select-none'
-                style={{background: 'linear-gradient(180deg, #FAFAFA, #CFCFCF)'}}
-                whileTap={{scale: 0.9}}
-                whileHover={{filter: 'brightness(1.15)'}}
-                onClick={()=> router.push(`/admin/clients/detail/${client.id}`)}>
-                <FaCircleArrowUp className='cursor-pointer' size={12}/>IR AL DETALLE</motion.label>
         </div>
     </motion.div>
 }

@@ -3,8 +3,7 @@ export default function getAgeFromUTCDate(birthDate=undefined){
     const currentDate = new Date().toLocaleDateString().split('/')
         .reverse().map(number => parseInt(number))
     birthDate = birthDate.split('-').map(number => parseInt(number))
-    console.log(currentDate)
-    console.log(birthDate)
+    
     let age = 0
     if (birthDate[0] < currentDate[0]){
         if (birthDate[1] < currentDate[1]) age += currentDate[0] - birthDate[0]
